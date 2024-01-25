@@ -1,0 +1,45 @@
+<div class="header">
+    <button class="button-logout" (click)="logOut()">Logout</button>
+</div>
+
+    <div *ngIf="pokemons" class="pokemon-list">
+        <div *ngFor="let info of pokemons.results[pokemons.number_page[0]], ; let index = index" (click)="selectPokemon(info)">
+            {{ info.name }}
+        </div>
+    </div>
+
+    <div *ngIf="selectedPokemon" class="detail-modal">
+        <div class="details-modal--info">
+            <figure>
+                <img [src]="selectedPokemon.data.sprites" alt="{{ selectedPokemon.name }}">
+            </figure>
+
+            <div class="details-modal--info">
+                <h2 class="detail-modal--info--title">{{ selectedPokemon.name }}</h2>
+                <div class="detail-modal--info--first">
+                    <h4>Weight: {{ selectedPokemon.data.weight }}</h4>
+                    <h4>Height: {{ selectedPokemon.data.height }}</h4>
+                    <h4>Experience: {{ selectedPokemon.data.base_experience }}</h4>
+                </div>
+
+                <h3>Abilities</h3>
+                <ul class="detail-modal--info-abilities--list">
+                    <li *ngFor="let info of selectedPokemon.data.abilities; let i = index">{{ info.ability.name }}</li>
+                </ul>
+                <h3>Stats</h3>
+                <ul class="detail-modal--info-abilities--list">
+                    <li *ngFor="let info of selectedPokemon.data.stats; let i = index">
+                        <div>
+                            <h4>{{ info.stat.name }}</h4>
+                            <span>Base stat: {{ info.base_stat }}</span>
+                            <br>
+                            <span>Effort: {{ info.effort }}</span>
+                        </div>
+                    </li>
+                </ul>
+                <!-- <p>Abilities: {{ selectedPokemon.abilities[].join(', ') }}</p>
+                <p>Stats: {{ selectedPokemon.stats.join(', ') }}</p> -->
+            </div>
+            <button class="button" (click)="closeDetailModal()">Close</button>
+        </div>
+</div>
