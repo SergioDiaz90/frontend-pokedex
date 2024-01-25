@@ -104,7 +104,6 @@ export class DashboardComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event): void {
-    // Lógica para cargar más pokémons cuando se hace scroll hacia abajo
     const scrollPosition = window.scrollY + window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
 
